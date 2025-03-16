@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="logo"><i class="fas fa-briefcase"></i> Dream Job</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="job-details">
+        <h2>Software Engineer</h2>
+        <p><strong>Company:</strong> Google</p>
+        <p><strong>Location:</strong> Bangalore</p>
+        <p><strong>Salary:</strong> ₹15,00,000 per year</p>
+        <p><strong>Description:</strong> We are looking for a skilled software engineer to join our team.</p>
+
+        <!-- Resume Upload Feature -->
+        <label for="resume-upload"><strong>Upload Your Resume:</strong></label>
+        <input type="file" id="resume-upload" accept=".pdf,.doc,.docx">
+
+        <!-- Apply Now Button (Initially Disabled) -->
+        <button class="apply-btn" id="apply-btn" onclick="showToast()" disabled>Apply Now</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Dream Job Board | Connecting Talent with Opportunity</p>
+    </footer>
+
+    <script>
+        // Enable "Apply Now" button only if a file is uploaded
+        document.getElementById("resume-upload").addEventListener("change", function() {
+            let applyBtn = document.getElementById("apply-btn");
+            
+            // Enable the button if a file is selected
+            if (this.files.length > 0) {
+                applyBtn.disabled = false;
+            } else {
+                applyBtn.disabled = true;
+            }
+        });
+
+        function showToast() {
+            // Create toast message
+            let toast = document.createElement("div");
+            toast.innerText = "Application Sent ✅";
+            toast.style.position = "fixed";
+            toast.style.bottom = "20px";
+            toast.style.right = "20px";
+            toast.style.background = "black";
+            toast.style.color = "white";
+            toast.style.padding = "10px 20px";
+            toast.style.borderRadius = "5px";
+            toast.style.zIndex = "1000";
+        
+            // Add toast to the page
+            document.body.appendChild(toast);
+        
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Dream Job</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm" class="auth-form">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="👤 Username" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="signupEmail" placeholder="✉️ Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="signupPassword" placeholder="🔒 Password" required>
+            </div>
+            <button type="submit" class="auth-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+    
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("signupEmail").value;
+            const password = document.getElementById("signupPassword").value;
+    
+            const response = await fetch("http://localhost:5000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, email, password })
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                alert("Signup Successful! Redirecting to Home Page...");
+    
+                setTimeout(() => {
+                    window.location.href = "index.html"; 
+                }, 1000);
+            } else {
+                alert(data.message);
+            }
+        });
+    </script>
+</body>
+</html>
